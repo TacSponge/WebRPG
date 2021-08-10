@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import FightPanel from './components/FightPanel';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Hello world</h1>
+    <FightPanel />
   </React.StrictMode>,
   document.getElementById('root')
 );
