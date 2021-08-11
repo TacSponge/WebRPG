@@ -8,9 +8,9 @@ class MainScreen extends Component {
     this.state = {
       currentCreature: { name: "Goblin", HP: 1 },
       slainCreatures: [
-        { name: "Goblin", count: 3 },
-        { name: "Kobold", count: 5 },
-        { name: "Dragon", count: 1 },
+        { name: "Goblin", count: 0 },
+        { name: "Kobold", count: 0 },
+        { name: "Dragon", count: 0 },
       ],
     };
   }
