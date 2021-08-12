@@ -11,12 +11,6 @@ class MainScreen extends Component {
     };
   }
 
-  creatureOptions = [
-    { name: "Goblin", HP: 1 },
-    { name: "Kobold", HP: 1 },
-    { name: "Dragon", HP: 1 },
-  ];
-
   attackHandler = () => {
     let currentCreature = { ...this.state.currentCreature };
     currentCreature.HP = currentCreature.HP - 1;
@@ -28,21 +22,34 @@ class MainScreen extends Component {
   };
 
   onSlay = (creature, state) => {
+    this.updateSlayCount(state, creature);
+    this.loadRandomCreature();
+  };
+
+  updateSlayCount(state, creature) {
+    console.log("update slay");
     let slainCreatures = [...state.slainCreatures];
     const index = slainCreatures.findIndex((c) => c.name === creature.name);
 
     slainCreatures[index] = { ...slainCreatures[index] };
+    console.log("Slay index:" + index);
     if (index >= 0) {
       slainCreatures[index].count++;
     } else {
       slainCreatures = [{ name: creature.name, count: 1 }, ...slainCreatures];
     }
 
-    let randomIndex = Math.floor(Math.random() * this.creatureOptions.length);
-    const currentCreature = { ...this.creatureOptions[randomIndex] };
+    this.setState({ slainCreatures });
+  }
 
-    this.setState({ slainCreatures: [...slainCreatures], currentCreature });
-  };
+  loadRandomCreature() {
+    const url = "http://localhost:14396/api/creatures";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({ currentCreature: { name: data.name, HP: data.hp } })
+      );
+  }
 
   render() {
     return (
@@ -57,12 +64,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-    const url = "http://localhost:14396/api/creatures";
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) =>
-        this.setState({ currentCreature: { name: data.name, HP: data.hp } })
-      );
+    this.loadRandomCreature();
   }
 }
 
