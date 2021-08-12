@@ -5,11 +5,11 @@ class StatsPanel extends Component {
     return (
       <div>
         <table>
-          <thead>
-            <th>Creature</th>
-            <th>Number Slain</th>
-          </thead>
           <tbody>
+            <tr>
+              <th>Creature</th>
+              <th>Number Slain</th>
+            </tr>
             {this.props.creatures.map((c) => (
               <tr key={c.name}>
                 <td>{c.name}</td>
