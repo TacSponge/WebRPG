@@ -37,6 +37,13 @@ class MainScreen extends Component {
       slainCreatures[index].count++;
     } else {
       slainCreatures = [{ name: creature.name, count: 1 }, ...slainCreatures];
+      const url = "http://localhost:14396/api/slaycount";
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ creature: creature, count: 1 }),
+      };
+      const response = fetch(url, requestOptions);
     }
 
     this.setState({ slainCreatures });

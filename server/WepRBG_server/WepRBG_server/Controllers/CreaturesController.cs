@@ -18,9 +18,9 @@ namespace WepRBG_server.Controllers
         Creature[] creatures =
         {
             new Creature("Moblin", 12)
-            //, new Creature("Goblin", 10)
-           // , new Creature("Kobold", 15)
-           // , new Creature("Dragon",45)
+            , new Creature("Goblin", 10)
+            , new Creature("Kobold", 15)
+           , new Creature("Dragon",45)
         };
 
         // GET: <ValuesController>
