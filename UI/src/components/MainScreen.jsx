@@ -7,18 +7,14 @@ class MainScreen extends Component {
     super(props);
     this.state = {
       currentCreature: { name: "Goblin", HP: 1 },
-      slainCreatures: [
-        { name: "Goblin", count: 0 },
-        { name: "Kobold", count: 0 },
-        { name: "Dragon", count: 0 },
-      ],
+      slainCreatures: [],
     };
   }
 
   creatureOptions = [
-    { name: "Goblin", HP: 10 },
-    { name: "Kobold", HP: 15 },
-    { name: "Dragon", HP: 45 },
+    { name: "Goblin", HP: 1 },
+    { name: "Kobold", HP: 1 },
+    { name: "Dragon", HP: 1 },
   ];
 
   attackHandler = () => {
@@ -36,7 +32,11 @@ class MainScreen extends Component {
     const index = slainCreatures.findIndex((c) => c.name === creature.name);
 
     slainCreatures[index] = { ...slainCreatures[index] };
-    slainCreatures[index].count++;
+    if (index >= 0) {
+      slainCreatures[index].count++;
+    } else {
+      slainCreatures = [{ name: creature.name, count: 1 }, ...slainCreatures];
+    }
 
     let randomIndex = Math.floor(Math.random() * this.creatureOptions.length);
     const currentCreature = { ...this.creatureOptions[randomIndex] };
