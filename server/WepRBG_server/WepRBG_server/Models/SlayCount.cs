@@ -7,6 +7,7 @@ namespace WepRBG_server.Models
 {
     public class SlayCount
     {
+        public int Id { get; set; }
         public Creature Creature { get; set; }
         public int Count { get; set;}
 
