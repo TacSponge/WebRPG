@@ -55,6 +55,15 @@ class MainScreen extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    const url = "http://localhost:14396/api/creatures";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({ currentCreature: { name: data.name, HP: data.hp } })
+      );
+  }
 }
 
 export default MainScreen;

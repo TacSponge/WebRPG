@@ -15,6 +15,8 @@ namespace WepRBG_server
 {
     public class Startup
     {
+        readonly string ReactPolicy = "_reactPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,6 +28,7 @@ namespace WepRBG_server
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options => options.AddPolicy(ReactPolicy, builder => { builder.WithOrigins("http://localhost/"); }));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -44,6 +47,12 @@ namespace WepRBG_server
             }
 
             app.UseRouting();
+
+            app.UseCors(builder => builder
+                .WithOrigins("http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                );
 
             app.UseAuthorization();
 
