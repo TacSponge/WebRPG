@@ -36,17 +36,22 @@ class MainScreen extends Component {
     if (index >= 0) {
       slainCreatures[index].count++;
     } else {
-      slainCreatures = [{ name: creature.name, count: 1 }, ...slainCreatures];
-      const url = "http://localhost:14396/api/slaycount";
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ creature: creature, count: 1 }),
-      };
-      const response = fetch(url, requestOptions);
+      var newCreature = { name: creature.name, count: 1 };
+      slainCreatures = [newCreature, ...slainCreatures];
+      this.AddSlainCreature(newCreature);
     }
 
     this.setState({ slainCreatures });
+  }
+
+  AddSlainCreature(newCreature) {
+    const url = "http://localhost:14396/api/slaycount";
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ newCreature }),
+    };
+    fetch(url, requestOptions);
   }
 
   loadRandomCreature() {
