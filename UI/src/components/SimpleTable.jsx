@@ -7,14 +7,14 @@ class StatsPanel extends Component {
         <table>
           <tbody>
             <tr>
-              {this.props.headers.map((header) => (
-                <th>{header}</th>
+              {this.props.headers.map((header, id) => (
+                <th key={id}>{header}</th>
               ))}
             </tr>
             {this.props.rows.map((row) => (
               <tr key={row.id}>
-                {row.data.map((col) => (
-                  <td>{col}</td>
+                {row.data.map((col, id) => (
+                  <td key={id}>{col}</td>
                 ))}
               </tr>
             ))}
