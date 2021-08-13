@@ -18,21 +18,14 @@ namespace WepRBG_server.Controllers
         [HttpGet]
         public IEnumerable<SlayCount> Get()
         {
-            return SlayCountService.GetAll();
-        }
-
-        // POST api/<SlayCountController>
-        [HttpPost]
-        public void Post([FromBody] SlayCount count)
-        {
-            SlayCountService.Add(count);
+            return CreatureService.GetAllCounts();
         }
 
         // PUT api/<SlayCountController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] int updatedCount)
         {
-
+            CreatureService.UpdateSlayCount(id, updatedCount);
         }
     }
 }

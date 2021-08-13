@@ -6,7 +6,7 @@ class MainScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCreature: { name: "Goblin", HP: 1 },
+      currentCreature: { name: "", HP: 0 },
       slainCreatures: [],
     };
   }
@@ -15,43 +15,37 @@ class MainScreen extends Component {
     let currentCreature = { ...this.state.currentCreature };
     currentCreature.HP = currentCreature.HP - 1;
     if (currentCreature.HP <= 0) {
-      this.onSlay(currentCreature, this.state);
+      this.onSlay(currentCreature.id, this.state);
     } else {
       this.setState({ currentCreature });
     }
   };
 
-  onSlay = (creature, state) => {
-    this.updateSlayCount(state, creature);
+  onSlay = (id, state) => {
+    this.updateSlayCount(id, state);
     this.loadRandomCreature();
   };
 
-  updateSlayCount(state, creature) {
-    console.log("update slay");
+  updateSlayCount(id, state) {
     let slainCreatures = [...state.slainCreatures];
-    const index = slainCreatures.findIndex((c) => c.name === creature.name);
+    let s = slainCreatures.find((c) => c.creatureId === id);
+    s.count++;
 
-    slainCreatures[index] = { ...slainCreatures[index] };
-    console.log("Slay index:" + index);
-    if (index >= 0) {
-      slainCreatures[index].count++;
-    } else {
-      var newCreature = { name: creature.name, count: 1 };
-      slainCreatures = [newCreature, ...slainCreatures];
-      this.AddSlainCreature(newCreature);
-    }
-
+    const url = "http://localhost:14396/api/slaycount/" + id;
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(s.count),
+    };
+    fetch(url, requestOptions);
     this.setState({ slainCreatures });
   }
 
-  AddSlainCreature(newCreature) {
+  loadSlayCount() {
     const url = "http://localhost:14396/api/slaycount";
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ newCreature }),
-    };
-    fetch(url, requestOptions);
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => this.setState({ slainCreatures: [...data] }));
   }
 
   loadRandomCreature() {
@@ -59,7 +53,9 @@ class MainScreen extends Component {
     fetch(url)
       .then((response) => response.json())
       .then((data) =>
-        this.setState({ currentCreature: { name: data.name, HP: data.hp } })
+        this.setState({
+          currentCreature: { ...data, HP: data.hp },
+        })
       );
   }
 
@@ -77,6 +73,7 @@ class MainScreen extends Component {
 
   componentDidMount() {
     this.loadRandomCreature();
+    this.loadSlayCount();
   }
 }
 

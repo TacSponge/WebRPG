@@ -7,13 +7,18 @@ namespace WepRBG_server.Models
 {
     public class Creature
     {
-        public String Name { get; protected set; }
-        public int HP { get; protected set; }
-        
-        public Creature(String name, int HP)
+        public int Id { get; private set; }
+        public String Name { get; private set; }
+        public int HP { get; private set; }
+        public int Count { get; set; }
+
+        public Creature(int id, String name, int hp, int slayCount)
         {
+            Id = id;
             Name = name;
-            this.HP = HP;
+            HP = hp;
+            Count = slayCount;
         }
+
     }
 }

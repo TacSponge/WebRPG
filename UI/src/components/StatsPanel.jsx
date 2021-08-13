@@ -11,8 +11,8 @@ class StatsPanel extends Component {
               <th>Number Slain</th>
             </tr>
             {this.props.creatures.map((c) => (
-              <tr key={c.name}>
-                <td>{c.name}</td>
+              <tr key={c.creatureId}>
+                <td>{c.creatureName}</td>
                 <td>{c.count}</td>
               </tr>
             ))}

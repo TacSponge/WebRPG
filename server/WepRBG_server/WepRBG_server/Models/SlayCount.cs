@@ -7,14 +7,17 @@ namespace WepRBG_server.Models
 {
     public class SlayCount
     {
-        public int Id { get; set; }
-        public Creature Creature { get; set; }
+        public int CreatureId { get; set; }
+        public String CreatureName { get; set; }
         public int Count { get; set;}
 
-        public SlayCount(Creature creature, int count)
+        public SlayCount(Creature c)
         {
-            this.Creature = creature;
-            this.Count = count;
+            CreatureId = c.Id;
+            CreatureName = c.Name;
+            Count = c.Count;
         }
+
+
     }
 }
