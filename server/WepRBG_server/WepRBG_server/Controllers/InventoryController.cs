@@ -11,7 +11,7 @@ namespace WepRBG_server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class InventoryController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<InventoryItem> getAll()

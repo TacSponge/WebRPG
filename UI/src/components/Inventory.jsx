@@ -21,7 +21,7 @@ class Inventory extends Component {
   }
 
   componentDidMount() {
-    let url = "http://localhost:14396/api/items";
+    let url = "http://localhost:14396/api/inventory";
     fetch(url)
       .then((response) => response.json())
       .then((data) =>
