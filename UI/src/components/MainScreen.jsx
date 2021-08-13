@@ -67,8 +67,8 @@ class MainScreen extends Component {
           creature={this.state.currentCreature}
           onAttack={this.attackHandler}
         />
-        <StatsPanel creatures={this.state.slainCreatures} />
         <Inventory />
+        <StatsPanel creatures={this.state.slainCreatures} />
       </div>
     );
   }
