@@ -3,11 +3,7 @@ import SimpleTable from "./SimpleTable";
 
 class Inventory extends Component {
   state = {
-    items: [
-      { id: 0, name: "axe", damage: 3 },
-      { id: 1, name: "sword", damage: 6 },
-      { id: 2, name: "fist", damage: 1 },
-    ],
+    items: [],
   };
   render() {
     let { items } = this.state;
@@ -22,6 +18,17 @@ class Inventory extends Component {
         />
       </div>
     );
+  }
+
+  componentDidMount() {
+    let url = "http://localhost:14396/api/items";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          items: [...data],
+        })
+      );
   }
 }
 
