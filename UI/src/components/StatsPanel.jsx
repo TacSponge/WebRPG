@@ -1,23 +1,17 @@
 import React, { Component } from "react";
+import SimpleTable from "./SimpleTable";
 
 class StatsPanel extends Component {
   render() {
+    let { creatures } = this.props;
     return (
       <div>
-        <table>
-          <tbody>
-            <tr>
-              <th>Creature</th>
-              <th>Number Slain</th>
-            </tr>
-            {this.props.creatures.map((c) => (
-              <tr key={c.creatureId}>
-                <td>{c.creatureName}</td>
-                <td>{c.count}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <SimpleTable
+          headers={["Creature", "Number Slain"]}
+          rows={creatures.map((c) => {
+            return { id: c.creatureId, data: [c.creatureName, c.count] };
+          })}
+        />
       </div>
     );
   }
