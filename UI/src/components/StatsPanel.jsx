@@ -6,6 +6,7 @@ class StatsPanel extends Component {
     let { creatures } = this.props;
     return (
       <div>
+        <h2>Slain Creatures</h2>
         <SimpleTable
           headers={["Creature", "Number Slain"]}
           rows={creatures.map((c) => {

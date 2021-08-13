@@ -12,12 +12,15 @@ class Inventory extends Component {
   render() {
     let { items } = this.state;
     return (
-      <SimpleTable
-        headers={["Name", "Damage"]}
-        rows={items.map((i) => {
-          return { id: i.id, data: [i.name, i.damage] };
-        })}
-      />
+      <div>
+        <h2>Inventory</h2>
+        <SimpleTable
+          headers={["Name", "Damage"]}
+          rows={items.map((i) => {
+            return { id: i.id, data: [i.name, i.damage] };
+          })}
+        />
+      </div>
     );
   }
 }
