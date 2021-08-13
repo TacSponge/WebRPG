@@ -13,7 +13,7 @@ class Inventory extends Component {
   };
 
   render() {
-    let { items } = this.state;
+    let { items } = this.props;
     return (
       <div>
         <h2>Inventory</h2>
@@ -25,7 +25,7 @@ class Inventory extends Component {
               data: [
                 i.name,
                 i.damage,
-                <button onClick={() => this.weaponSelectHandler(i.id)}>
+                <button onClick={() => this.props.onWeaponSelect(i.id)}>
                   Equip
                 </button>,
               ],
@@ -34,17 +34,6 @@ class Inventory extends Component {
         />
       </div>
     );
-  }
-
-  componentDidMount() {
-    let url = "http://localhost:14396/api/inventory";
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          items: [...data],
-        })
-      );
   }
 }
 

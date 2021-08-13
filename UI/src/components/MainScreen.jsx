@@ -9,6 +9,7 @@ class MainScreen extends Component {
     this.state = {
       currentCreature: { name: "", HP: 0 },
       slainCreatures: [],
+      items: [],
     };
   }
 
@@ -22,8 +23,8 @@ class MainScreen extends Component {
     }
   };
 
-  weaponSelectHandler = (w) => {
-    var currentWeapon = w;
+  weaponSelectHandler = (id) => {
+    let currentWeapon = this.state.items.find((w) => w.id === id);
     this.setState({ currentWeapon });
   };
 
@@ -65,6 +66,17 @@ class MainScreen extends Component {
       );
   }
 
+  loadInventory() {
+    let url = "http://localhost:14396/api/inventory";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          items: [...data],
+        })
+      );
+  }
+
   render() {
     return (
       <div>
@@ -73,7 +85,10 @@ class MainScreen extends Component {
           onAttack={this.attackHandler}
           currentWeapon={this.state.currentWeapon}
         />
-        <Inventory onWeaponSelect={this.weaponSelectHandler} />
+        <Inventory
+          onWeaponSelect={this.weaponSelectHandler}
+          items={this.state.items}
+        />
         <StatsPanel creatures={this.state.slainCreatures} />
       </div>
     );
@@ -82,6 +97,7 @@ class MainScreen extends Component {
   componentDidMount() {
     this.loadRandomCreature();
     this.loadSlayCount();
+    this.loadInventory();
   }
 }
 
