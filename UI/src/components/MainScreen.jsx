@@ -14,12 +14,17 @@ class MainScreen extends Component {
 
   attackHandler = () => {
     let currentCreature = { ...this.state.currentCreature };
-    currentCreature.HP = currentCreature.HP - 1;
+    currentCreature.HP = currentCreature.HP - this.state.currentWeapon.damage;
     if (currentCreature.HP <= 0) {
       this.onSlay(currentCreature.id, this.state);
     } else {
       this.setState({ currentCreature });
     }
+  };
+
+  weaponSelectHandler = (w) => {
+    var currentWeapon = w;
+    this.setState({ currentWeapon });
   };
 
   onSlay = (id, state) => {
@@ -66,8 +71,9 @@ class MainScreen extends Component {
         <FightPanel
           creature={this.state.currentCreature}
           onAttack={this.attackHandler}
+          currentWeapon={this.state.currentWeapon}
         />
-        <Inventory />
+        <Inventory onWeaponSelect={this.weaponSelectHandler} />
         <StatsPanel creatures={this.state.slainCreatures} />
       </div>
     );

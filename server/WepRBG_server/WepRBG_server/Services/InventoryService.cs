@@ -10,7 +10,7 @@ namespace WepRBG_server.Services
     public static class InventoryService
     {
         public static IEnumerable<InventoryItem> InventoryItems { get; set; } =
-            new List<InventoryItem>() {new InventoryItem(0, "axe", 3)};
+            new List<InventoryItem>() {new InventoryItem(0, "axe", 3), new InventoryItem(1, "sword", 4) };
         public static IEnumerable<InventoryItem> GetAllItems()
         {
             return InventoryItems;
