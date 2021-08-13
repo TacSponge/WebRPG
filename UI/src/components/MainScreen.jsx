@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FightPanel from "./FightPanel";
 import StatsPanel from "./StatsPanel";
+import Inventory from "./Inventory";
 
 class MainScreen extends Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class MainScreen extends Component {
           onAttack={this.attackHandler}
         />
         <StatsPanel creatures={this.state.slainCreatures} />
+        <Inventory />
       </div>
     );
   }
