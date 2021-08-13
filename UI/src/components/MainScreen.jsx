@@ -49,7 +49,7 @@ class MainScreen extends Component {
   }
 
   loadRandomCreature() {
-    const url = "http://localhost:14396/api/creatures";
+    const url = "http://localhost:14396/api/creatures/random";
     fetch(url)
       .then((response) => response.json())
       .then((data) =>

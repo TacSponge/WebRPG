@@ -16,9 +16,15 @@ namespace WepRBG_server.Controllers
     [ApiController]
     public class CreaturesController : ControllerBase
     {
-        // GET: <ValuesController>
         [HttpGet]
-        [Route("/random")]
+        public IEnumerable<Creature> GetAll()
+        {
+            return CreatureService.GetAllCreatures();
+        }
+
+
+        [HttpGet]
+        [Route("random")]
         public Creature GetRandomCreature()
         {
             Random random = new Random();
