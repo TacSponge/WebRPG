@@ -34,7 +34,7 @@ namespace WepRBG_server.Data
             int index = Creatures.FindIndex(c => c.Id == id);
             if (index != -1)
             {
-                Creatures.First().Count = updatedCount;
+                Creatures[index].Count = updatedCount;
             }
         }
     }
