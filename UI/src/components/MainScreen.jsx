@@ -5,10 +5,12 @@ import AdminScreen from "./AdminScreen";
 
 class MainScreen extends Component {
   state = { tabIndex: 0 };
-  tabs = [0, 1];
+  tabs = [
+    { id: 0, title: "Game" },
+    { id: 1, title: "Admin" },
+  ];
 
   tabHandler = (i) => {
-    console.log("Selected tab " + i);
     this.setState({ tabIndex: i });
   };
 
