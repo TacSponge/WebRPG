@@ -18,5 +18,11 @@ namespace WepRBG_server.Controllers
         {
             return InventoryService.GetAllItems();
         }
+
+        [HttpDelete("{id}")]
+        public void DeleteById(int id, [FromBody] int updatedCount)
+        {
+            InventoryService.DeleteItem(id);
+        }
     }
 }

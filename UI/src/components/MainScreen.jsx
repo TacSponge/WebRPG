@@ -23,14 +23,22 @@ class MainScreen extends Component {
     }
   };
 
+  onSlay = (id, state) => {
+    this.updateSlayCount(id, state);
+    this.loadRandomCreature();
+  };
+
   weaponSelectHandler = (id) => {
     let currentWeapon = this.state.items.find((w) => w.id === id);
     this.setState({ currentWeapon });
   };
 
-  onSlay = (id, state) => {
-    this.updateSlayCount(id, state);
-    this.loadRandomCreature();
+  weaponTossHandler = (id) => {
+    let items = [...this.state.items].filter((i) => i.id !== id);
+    this.setState({ items });
+
+    let url = "http://localhost:14396/api/inventory/" + id;
+    fetch(url, { method: "DELETE" });
   };
 
   updateSlayCount(id, state) {
@@ -87,6 +95,7 @@ class MainScreen extends Component {
         />
         <Inventory
           onWeaponSelect={this.weaponSelectHandler}
+          onWeaponToss={this.weaponTossHandler}
           items={this.state.items}
         />
         <StatsPanel creatures={this.state.slainCreatures} />

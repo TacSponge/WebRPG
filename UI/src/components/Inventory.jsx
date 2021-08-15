@@ -6,11 +6,7 @@ class Inventory extends Component {
     items: [],
   };
 
-  weaponSelectHandler = (id) => {
-    let weapon = this.state.items.find((w) => w.id === id);
-    console.log(weapon);
-    this.props.onWeaponSelect(weapon);
-  };
+  weaponSelectHandler = (id) => {};
 
   render() {
     let { items } = this.props;
@@ -18,7 +14,7 @@ class Inventory extends Component {
       <div>
         <h2>Inventory</h2>
         <SimpleTable
-          headers={["Name", "Damage", ""]}
+          headers={["Name", "Damage", "", ""]}
           rows={items.map((i) => {
             return {
               id: i.id,
@@ -27,6 +23,9 @@ class Inventory extends Component {
                 i.damage,
                 <button onClick={() => this.props.onWeaponSelect(i.id)}>
                   Equip
+                </button>,
+                <button onClick={() => this.props.onWeaponToss(i.id)}>
+                  Toss
                 </button>,
               ],
             };
