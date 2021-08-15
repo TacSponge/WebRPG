@@ -5,7 +5,9 @@ class TabNavigator extends Component {
     return (
       <div>
         {this.props.tabs.map((t) => (
-          <button>Tab {t}</button>
+          <button key={t} onClick={() => this.props.onTabSelect(t)}>
+            Tab {t}
+          </button>
         ))}
       </div>
     );
