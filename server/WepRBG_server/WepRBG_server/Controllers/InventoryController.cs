@@ -20,7 +20,7 @@ namespace WepRBG_server.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void DeleteById(int id, [FromBody] int updatedCount)
+        public void DeleteById(int id)
         {
             InventoryService.DeleteItem(id);
         }
