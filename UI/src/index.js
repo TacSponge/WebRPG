@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainScreen from './components/MainScreen';
+import GamePanel from './components/GamePanel';
 import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainScreen />
+    <GamePanel />
   </React.StrictMode>,
   document.getElementById('root')
 );

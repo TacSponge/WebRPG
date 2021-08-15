@@ -3,7 +3,7 @@ import FightPanel from "./FightPanel";
 import StatsPanel from "./StatsPanel";
 import Inventory from "./Inventory";
 
-class MainScreen extends Component {
+class GamePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -110,4 +110,4 @@ class MainScreen extends Component {
   }
 }
 
-export default MainScreen;
+export default GamePanel;
