@@ -34,5 +34,11 @@ namespace WepRBG_server.Controllers
 
             return creatures[index];
         }
+
+        [HttpDelete("{id}")]
+        public void  DeleteById(int id)
+        {
+            CreatureService.DeleteCreature(id);
+        }
     }
 }

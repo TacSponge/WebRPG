@@ -8,7 +8,7 @@ namespace WepRBG_server.Data
 {
     public static class CreatureService 
     { 
-        static List< Creature> Creatures { get; }
+        internal static List< Creature> Creatures { get; private set; }
 
         static CreatureService()
         {
@@ -36,6 +36,11 @@ namespace WepRBG_server.Data
             {
                 Creatures[index].Count = updatedCount;
             }
+        }
+
+        internal static void DeleteCreature(int id)
+        {
+            Creatures = Creatures.Where(c => c.Id != id).ToList();
         }
     }
 }
