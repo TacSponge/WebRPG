@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AdminCreatureTable from "./AdminCreatureTable";
+import AddCreatureForm from "./AddCreatureForm";
 
 class AdminScreen extends Component {
   state = { creatures: [] };
@@ -11,6 +12,10 @@ class AdminScreen extends Component {
     fetch(url, { method: "DELETE" });
   };
 
+  handleSubmit = (creature) => {
+    console.log(creature);
+  };
+
   render() {
     return (
       <div>
@@ -18,6 +23,10 @@ class AdminScreen extends Component {
         <AdminCreatureTable
           creatures={this.state.creatures}
           onCreatureDelete={this.handleCreatureDelete}
+        />
+        <AddCreatureForm
+          creatures={this.props.creatures}
+          onSubmit={this.handleSubmit}
         />
       </div>
     );
